@@ -1,0 +1,16 @@
+def annotate_peaks(ax, df):
+    peaks = sp500_data_2018_2024[sp500_data_2018_2024['Close'] > 5000]
+    for date, row in peaks.iterrows():
+        ax.annotate('Peak', xy=(date, row['Close']), xytext=(date, row['Close'] + 1),
+                    arrowprops=dict(facecolor='red', shrink=0.05),
+                    )
+
+# Plotting
+plt.figure(figsize=(15, 8))
+plt.plot(sp500_data_2018_2024.index, sp500_data_2018_2024['Close'], marker='o')
+annotate_peaks(plt.gca(), sp500_data_2018_2024)
+plt.title('Custom Function for Annotations - how2matplotlib.com')
+plt.xlabel('Date')
+plt.ylabel('Close')
+plt.grid(True)
+plt.show()
